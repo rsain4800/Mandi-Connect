@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # MySQL 8.0 Database Container
+  db:
+    image: mysql:8.0
+    container_name: mandiconnect_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password_change_me
+      MYSQL_DATABASE: mandi_connect
+      MYSQL_USER: mandi_user
+      MYSQL_PASSWORD: mandi_password_change_me
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_password_change_me"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - mandiconnect_network
+
+  # Express Backend API Container
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: mandiconnect_backend
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      DB_HOST: db
+      DB_USER: mandi_user
+      DB_PASSWORD: mandi_password_change_me
+      DB_NAME: mandi_connect
+      JWT_SECRET: mandiconnect_production_super_secret_jwt_key_2026_64chars
+      COOKIE_SECURE: "false" # Set true if terminate SSL at reverse proxy
+      FRONTEND_URL: http://localhost:80
+      RAZORPAY_KEY_ID: rzp_test_placeholder
+      RAZORPAY_KEY_SECRET: placeholder_secret
+      RAZORPAY_WEBHOOK_SECRET: placeholder_webhook_secret
+      ADMIN_EMAIL: admin@mandiconnect.com
+      ADMIN_PASSWORD: AdminPass@123456
+    ports:
+      - "5000:5000"
+    volumes:
+      - uploads_data:/app/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - mandiconnect_network
+
+  # React Frontend (Nginx Container)
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: mandiconnect_frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - mandiconnect_network
+
+volumes:
+  db_data:
+  uploads_data:
+
+networks:
+  mandiconnect_network:
+    driver: bridge

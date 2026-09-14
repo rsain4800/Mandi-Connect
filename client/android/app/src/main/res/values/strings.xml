@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MandiConnect</string>
+    <string name="title_activity_main">MandiConnect</string>
+    <string name="package_name">com.mandiconnect.app</string>
+    <string name="custom_url_scheme">com.mandiconnect.app</string>
+</resources>

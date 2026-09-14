@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-mandi: #FBF8F1;
+    --bg-mandi-alt: #F4EEDD;
+    --green-dark: #163326;
+    --green-primary: #1F4D36;
+    --green-light: #2E6B4D;
+    --green-soft: #E4EEE7;
+    --accent-gold: #D9760C;
+    --accent-gold-dark: #B25F06;
+    --accent-soft: #FBE7CC;
+    --text-primary: #1F2923;
+    --text-muted: #5C6A61;
+    --border-color: #E2DAC8;
+  }
+
+  body {
+    background-color: var(--bg-mandi);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 218, 200, 0.6);
+}
+
+.mandi-gradient {
+  background: linear-gradient(135deg, #163326 0%, #1F4D36 60%, #2E6B4D 100%);
+}
+
+.mandi-accent-gradient {
+  background: linear-gradient(135deg, #D9760C 0%, #B25F06 100%);
+}
+
+.mandi-hero-bg {
+  background-color: #163326;
+  background-image: radial-gradient(#2E6B4D 0.75px, transparent 0.75px), radial-gradient(#2E6B4D 0.75px, #163326 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+/* Skeleton loader */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #E4EEE7 25%, #F4EEDD 50%, #E4EEE7 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Hide scrollbar for category horizontal scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

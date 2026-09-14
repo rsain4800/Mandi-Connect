@@ -1,0 +1,16 @@
+{
+  "appId": "com.mandiconnect.app",
+  "appName": "MandiConnect",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#166534",
+      "showSpinner": false
+    }
+  }
+}

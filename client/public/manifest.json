@@ -1,0 +1,31 @@
+{
+  "short_name": "MandiConnect",
+  "name": "MandiConnect - B2B Wholesale Marketplace",
+  "description": "B2B Wholesale Marketplace connecting Farmers & Mandi Vendors with Commercial Buyers",
+  "icons": [
+    {
+      "src": "pwa-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "pwa-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#166534",
+  "theme_color": "#166534",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "categories": ["business", "shopping", "food"]
+}
